@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.hosts import router as hosts_router
 
 app = FastAPI(
-    title="Watchdog Monitoring API",
+    title="Watchtower Monitoring API",
     version="0.1.0",
 )
 

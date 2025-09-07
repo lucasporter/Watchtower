@@ -25,11 +25,11 @@ git --version
 ### 1. Clone/Open the Project
 ```bash
 # Navigate to your project directory
-cd /path/to/watchdog
+cd /path/to/watchtower
 
 # If you need to clone it
 git clone <repository-url>
-cd watchdog
+cd watchtower
 ```
 
 ### 2. Environment Setup
@@ -54,9 +54,9 @@ Once all services are running:
 - **Backend API (FastAPI)**: http://localhost:8080
 - **API Documentation**: http://localhost:8080/docs
 - **PostgreSQL Database**: localhost:5432
-  - Username: `watchdog`
-  - Password: `watchdog`
-  - Database: `watchdog`
+  - Username: `watchtower`
+  - Password: `watchtower`
+  - Database: `watchtower`
 
 ### 5. Database Migrations
 The backend includes Alembic for database migrations. Run migrations if needed:
@@ -89,7 +89,7 @@ docker-compose logs monitor-api
 
 # Execute commands in running containers
 docker-compose exec monitor-api python -c "print('Hello from container')"
-docker-compose exec postgres psql -U watchdog -d watchdog
+docker-compose exec postgres psql -U watchtower -d watchtower
 
 # Run tests (if available)
 docker-compose exec monitor-api python -m pytest
@@ -131,7 +131,7 @@ docker system prune -a
 Create a `start-dev.sh` script for easy startup:
 ```bash
 #!/bin/bash
-echo "Starting Watchdog development environment..."
+echo "Starting Watchtower development environment..."
 docker-compose up --build
 ```
 
@@ -139,6 +139,6 @@ Make it executable: `chmod +x start-dev.sh`
 
 ## Notes
 - The project uses volume mounts for live code reloading
-- All services are networked together via `watchdog_net`
+- All services are networked together via `watchtower_net`
 - Database data persists in a Docker volume (`pgdata`)
 - Frontend uses polling for file watching (better for WSL environments) 

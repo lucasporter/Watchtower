@@ -20,7 +20,7 @@ function App() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-green-400">Watchdog</h1>
+                <h1 className="text-xl font-bold text-green-400">Watchtower</h1>
                 <span className="text-sm text-gray-400">System Monitor</span>
               </div>
             </div>

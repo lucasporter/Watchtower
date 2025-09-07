@@ -46,7 +46,7 @@ This directory contains dummy Linux machines that simulate real servers for test
 
 ## Network Information
 
-All machines are connected to the `watchdog_net` Docker network and can communicate with each other using their hostnames:
+All machines are connected to the `watchtower_net` Docker network and can communicate with each other using their hostnames:
 
 - `web-server-1`
 - `db-server-1`
@@ -100,7 +100,7 @@ Each machine includes monitoring tools:
 You can add these machines to your monitoring system using their hostnames or IP addresses. Each machine will have its own IP within the Docker network that you can discover using:
 
 ```bash
-docker network inspect watchdog_net
+docker network inspect watchtower_net
 ```
 
 ## Troubleshooting

@@ -6,11 +6,11 @@ services:
     ports:
       - "8080:8000"
     environment:
-      DATABASE_URL: postgresql://watchdog:watchdog@postgres:5432/watchdog
+      DATABASE_URL: postgresql://watchtower:watchtower@postgres:5432/watchtower
     depends_on:
       - postgres
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./backend:/app
 
@@ -18,20 +18,20 @@ services:
     build: ./backend
     command: celery -A app.tasks worker --loglevel=info
     environment:
-      DATABASE_URL: postgresql://watchdog:watchdog@postgres:5432/watchdog
+      DATABASE_URL: postgresql://watchtower:watchtower@postgres:5432/watchtower
       CELERY_BROKER_URL: redis://redis:6379/0
     depends_on:
       - postgres
       - redis
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./backend:/app
 
   redis:
     image: redis:7
     networks:
-      - watchdog_net
+      - watchtower_net
 
   postgres:
     image: postgres:15
@@ -39,20 +39,20 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: watchdog
-      POSTGRES_PASSWORD: watchdog
-      POSTGRES_DB: watchdog
+      POSTGRES_USER: watchtower
+      POSTGRES_PASSWORD: watchtower
+      POSTGRES_DB: watchtower
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - watchdog_net
+      - watchtower_net
 
   monitor-ui:
     build: ./frontend
     ports:
       - "5173:5173"
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -74,7 +74,7 @@ services:
     environment:
       - ROOT_PASSWORD=password123
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./dummy-machines/web-server-1:/root
     command: >
@@ -99,7 +99,7 @@ services:
     environment:
       - ROOT_PASSWORD=password123
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./dummy-machines/db-server-1:/root
     command: >
@@ -124,7 +124,7 @@ services:
     environment:
       - ROOT_PASSWORD=password123
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./dummy-machines/app-server-1:/root
     command: >
@@ -150,7 +150,7 @@ services:
     environment:
       - ROOT_PASSWORD=password123
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./dummy-machines/lb-server-1:/root
     command: >
@@ -175,7 +175,7 @@ services:
     environment:
       - ROOT_PASSWORD=password123
     networks:
-      - watchdog_net
+      - watchtower_net
     volumes:
       - ./dummy-machines/monitoring-server-1:/root
     command: >
@@ -195,7 +195,7 @@ volumes:
   pgdata:
 
 networks:
-  watchdog_net:
-    name: watchdog_net
+  watchtower_net:
+    name: watchtower_net
     driver: bridge
 

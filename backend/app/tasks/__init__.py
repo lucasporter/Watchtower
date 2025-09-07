@@ -3,7 +3,7 @@ from app.core.config import settings
 
 # Create Celery instance
 celery = Celery(
-    "watchdog",
+    "watchtower",
     broker=settings.celery_broker_url,
     backend=settings.celery_result_backend,
     include=["app.tasks"]

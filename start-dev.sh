@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🐕 Starting Watchdog development environment..."
+echo "🐕 Starting Watchtower development environment..."
 echo "📦 Building and starting all services..."
 
 # Check if Docker is running
