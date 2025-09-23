@@ -343,7 +343,7 @@ export function ClusterGridView({ onNodeClick }: ClusterGridViewProps) {
                         Back to Grid View
                       </button>
                     </div>
-                    <NodeDetails machineId={selectedNodeId} onBack={handleBackToGrid} />
+                    <NodeDetails nodeId={selectedNodeId} onBack={handleBackToGrid} />
                   </div>
                 ) : (
                   // Grid View

@@ -2,13 +2,12 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from datetime import datetime
+from datetime import datetime, UTC
 from typing import List
 
 from app.schemas.host import Cluster, ClusterCreate, Node, NodeCreate, NodeUpdate
 from app.models.host import Cluster as ClusterModel, Node as NodeModel
 from app.db.session import get_db
-from app.utils.health import is_alive
 
 router = APIRouter()
 
@@ -21,7 +20,7 @@ def list_clusters(db: Session = Depends(get_db)):
 @router.post("/clusters", response_model=Cluster, status_code=status.HTTP_201_CREATED)
 def create_cluster(cluster: ClusterCreate, db: Session = Depends(get_db)):
     """Create a new cluster."""
-    db_cluster = ClusterModel(**cluster.dict())
+    db_cluster = ClusterModel(**cluster.model_dump())
     db.add(db_cluster)
     db.commit()
     db.refresh(db_cluster)
@@ -35,7 +34,7 @@ def create_node(node: NodeCreate, db: Session = Depends(get_db)):
     if not cluster:
         raise HTTPException(status_code=404, detail="Cluster not found")
     
-    db_node = NodeModel(**node.dict())
+    db_node = NodeModel(**node.model_dump())
     db.add(db_node)
     db.commit()
     db.refresh(db_node)
@@ -56,11 +55,11 @@ def update_node(node_id: int, node_update: NodeUpdate, db: Session = Depends(get
     if not db_node:
         raise HTTPException(status_code=404, detail="Node not found")
     
-    update_data = node_update.dict(exclude_unset=True)
+    update_data = node_update.model_dump(exclude_unset=True)
     for field, value in update_data.items():
         setattr(db_node, field, value)
     
-    db_node.updated_at = datetime.now()
+    db_node.updated_at = datetime.now(UTC)
     db.commit()
     db.refresh(db_node)
     return db_node
