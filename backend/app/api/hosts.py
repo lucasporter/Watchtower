@@ -60,7 +60,7 @@ def update_node(node_id: int, node_update: NodeUpdate, db: Session = Depends(get
     for field, value in update_data.items():
         setattr(db_node, field, value)
     
-    db_node.updated_at = datetime.utcnow()
+    db_node.updated_at = datetime.now()
     db.commit()
     db.refresh(db_node)
     return db_node
@@ -75,4 +75,3 @@ def delete_node(node_id: int, db: Session = Depends(get_db)):
     db.delete(db_node)
     db.commit()
     return {"message": "Node deleted successfully"}
-
