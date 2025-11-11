@@ -114,12 +114,12 @@ The frontend has been updated to use the new structure. The main changes are:
 
 ## Backward Compatibility
 
-The old `/api/hosts` endpoint is maintained for backward compatibility, but it now returns machines instead of the old host structure. This allows existing integrations to continue working while you migrate to the new structure.
+The old `/api/hosts` endpoint is maintained for backward compatibility, but it now returns machines instead of the old host structure. This allows existing integrations to continue working while I migrate to the new structure.
 
 ## Troubleshooting
 
 ### Migration Issues
-- Ensure you have a backup of your database before running migrations
+- Ensure you have a backup of the database before running migrations
 - If the migration script fails, check that both old and new tables exist
 - The migration is idempotent - you can run it multiple times safely
 
