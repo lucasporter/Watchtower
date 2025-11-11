@@ -36,7 +36,7 @@ System (highest level)
 
 ### 1. Database Migration
 
-First, you need to create the new database tables:
+First, I need to create the new database tables:
 
 ```bash
 cd backend
